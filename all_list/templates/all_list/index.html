@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>all_list</title>
+</head>
+<body>
+    <div>
+        <table border="1", width="100%">
+            {% for data in monthly_calendar %}
+            <tr width="100%">
+                {% for day, todo in data %}
+                <td>
+                    <p align="right", style="font-size: 70%;">
+                        {{ day }}
+                    </p>
+                    <p align="center">
+                        {{ todo }}
+                    </p>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

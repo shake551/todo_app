@@ -1,18 +1,79 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="jp">
+<html lang="jp"> 
 <head>
     <meta charset="UTF-8">
     <title>all_list</title>
+    <style>
+        table{
+            width: 100%;
+            table-layout: fixed;
+        }
+        .fixbox{
+            border: 1;
+            width: 100%;
+            top: 5px;
+            position: sticky;
+            color: #fff;
+            background: #333;
+        }
+        .day{
+            text-align: right;
+            font-size: 70%;
+        }
+    </style>
 </head>
+
 <body>
+    <h1>
+        {{ year_and_month }}
+    </h1>
     <div>
-        <table border="1", width="100%">
+        <table class="fixbox", border="1">
+            <tr>
+                <td>
+                    <p align="center" , style="font-size: 70%;">
+                        Su
+                    </p>
+                </td>
+                <td>
+                    <p align="center" , style="font-size: 70%;">
+                        Mo
+                    </p>
+                </td>
+                <td>
+                    <p align="center" , style="font-size: 70%;">
+                        Tu
+                    </p>
+                </td>
+                <td>
+                    <p align="center" , style="font-size: 70%;">
+                        We
+                    </p>
+                </td>
+                <td>
+                    <p align="center" , style="font-size: 70%;">
+                        Th
+                    </p>
+                </td>
+                <td>
+                    <p align="center" , style="font-size: 70%;">
+                        Fr
+                    </p>
+                </td>
+                <td>
+                    <p align="center" , style="font-size: 70%;">
+                        Sa
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <table border="1" , width="100%">
             {% for data in monthly_calendar %}
-            <tr width="100%">
+            <tr>
                 {% for day, todo in data %}
                 <td>
-                    <p align="right", style="font-size: 70%;">
+                    <p class="day">
                         {{ day }}
                     </p>
                     <p align="center">

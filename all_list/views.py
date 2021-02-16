@@ -9,6 +9,8 @@ def show_cal(request):
     year = 2021
     month = 2
 
+    year_and_month = str(year) + "年" + str(month) + "月"
+
     #day_countにその月の日数を代入
     day_count = calendar.monthrange(year, month)[1]
 
@@ -45,20 +47,18 @@ def show_cal(request):
             if len(temporary_list) == 7:
                 monthly_calendar.append(temporary_list)
                 print('append')
+                print(temporary_list)
             if day == day_count:
                 day += 1
-                temporary_data = [' ', '']
-                temporary_list.append(temporary_data)
             print('for')
             print(temporary_list)
             print(len(temporary_list))
 
     print('mon:')
     print(monthly_calendar)
-    weekday = [['Su', ''], ['Mo', ''], ['Tu', ''], ['We', ''], ['Th', ''], ['Fr', ''], ['Sa', '']]
-    monthly_calendar.insert(0, weekday)
 
     params = {
+        'year_and_month': year_and_month,
         'monthly_calendar': monthly_calendar,
     }
     return render(request, 'all_list/index.html', params)

@@ -1,0 +1,13 @@
+table{
+    width: 100%;
+}
+
+th, td{
+    height: 100%;
+}
+
+.fixbox{
+    position: sticky;
+    top: 0;
+    background-color: aqua;
+}

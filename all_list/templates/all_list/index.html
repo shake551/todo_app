@@ -16,10 +16,28 @@
             position: sticky;
             color: #fff;
             background: #333;
+            z-index: 1;
+        }
+        .calbox{
+            width: 100%;
+            table-layout: fixed;
+            height: auto;
+            position: relative;
+        }
+        .calbox:after{
+            content: '';
+            display: block;
+            padding-top: 100%;
         }
         .day{
-            text-align: right;
-            font-size: 70%;
+            position: absolute;
+            right: 0%;
+            top: 0%;
+        }
+        .todo{
+            display: inline-block;
+            width: 100%;
+            text-align: center;
         }
     </style>
 </head>
@@ -31,53 +49,55 @@
     <div>
         <table class="fixbox", border="1">
             <tr>
-                <td>
-                    <p align="center" , style="font-size: 70%;">
+                <th>
+                    <p align="center">
                         Su
                     </p>
-                </td>
-                <td>
-                    <p align="center" , style="font-size: 70%;">
+                </th>
+                <th>
+                    <p align="center">
                         Mo
                     </p>
-                </td>
-                <td>
-                    <p align="center" , style="font-size: 70%;">
+                </th>
+                <th>
+                    <p align="center">
                         Tu
                     </p>
-                </td>
-                <td>
-                    <p align="center" , style="font-size: 70%;">
+                </th>
+                <th>
+                    <p align="center">
                         We
                     </p>
-                </td>
-                <td>
-                    <p align="center" , style="font-size: 70%;">
+                </th>
+                <th>
+                    <p align="center">
                         Th
                     </p>
-                </td>
-                <td>
-                    <p align="center" , style="font-size: 70%;">
+                </th>
+                <th>
+                    <p align="center">
                         Fr
                     </p>
-                </td>
-                <td>
-                    <p align="center" , style="font-size: 70%;">
+                </th>
+                <th>
+                    <p align="center">
                         Sa
                     </p>
-                </td>
+                </th>
             </tr>
         </table>
         <table border="1" , width="100%">
             {% for data in monthly_calendar %}
-            <tr>
+            <tr class="calrow">
                 {% for day, todo in data %}
-                <td>
-                    <p class="day">
-                        {{ day }}
-                    </p>
-                    <p align="center">
-                        {{ todo }}
+                <td class="calbox">
+                    <p>
+                        <span class="day">
+                            {{ day }}
+                        </span>
+                        <span class="todo">
+                            {{ todo }}
+                        </span>
                     </p>
                 </td>
                 {% endfor %}

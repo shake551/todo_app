@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 import calendar
 import datetime as dt
 
 from .models import ToDo
+from .forms import ToDoForm
 
 def show_cal(request):
     year = 2021
@@ -64,9 +67,46 @@ def show_cal(request):
     return render(request, 'all_list/index.html', params)
 
 def show_task(request, date):
-    get_data = ToDo.objects.get()
-    task_data = get_data.multi_return()
-    if str(task_data[1]) == str(date):
-        return task_data[0]
+    data = ToDo.objects.all()
+    task_data = []
+    for get_data in data:
+        temporary_data = get_data.multi_return()
+        if str(temporary_data[1]) == str(date):
+            task_data.append(temporary_data[0])
+        else:
+            task_data.append(' ')
+    return task_data
+
+def create_todo(request):
+    #POST送信の処理
+    if (request.method == 'POST'):
+        form = ToDoForm(request.POST)
+        if form.is_valid():
+            end = request.POST.get('end')
+            task = request.POST.get('task')
+            limit = request.POST.get('limit')
+            memo = request.POST.get('memo')
+
+            if end == 'on':
+                end = True
+            else:
+                end = False
+
+            todo = ToDo()
+            todo.end = end
+            todo.task = task
+            todo.limit = limit
+            todo.memo = memo
+            todo.save()
+        return redirect(to='/all_list/cal')
+
+    #GETアクセス時の処理
     else:
-        return ' '
+        form = ToDoForm()
+
+    #共通処理
+    params = {
+        'form': form,
+    }
+
+    return render(request, 'all_list/create_todo.html', params)

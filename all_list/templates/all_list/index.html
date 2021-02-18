@@ -95,9 +95,11 @@
                         <span class="day">
                             {{ day }}
                         </span>
+                        {% for task in todo %}
                         <span class="todo">
-                            {{ todo }}
+                            {{ task }}
                         </span>
+                        {% endfor %}
                     </p>
                 </td>
                 {% endfor %}

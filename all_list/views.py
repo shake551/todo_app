@@ -73,8 +73,8 @@ def show_task(request, date):
         temporary_data = get_data.multi_return()
         if str(temporary_data[1]) == str(date):
             task_data.append(temporary_data[0])
-        else:
-            task_data.append(' ')
+    if len(task_data) == 0:
+        task_data.append('')
     return task_data
 
 def create_todo(request):

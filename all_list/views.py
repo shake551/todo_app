@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.forms import ModelForm
 import calendar
 import datetime as dt
 
@@ -28,11 +30,11 @@ def show_cal(request):
     monthly_calendar = []
     for i in range(len(cal_data)):
         #曜日が入っていない要素は空白にする
-        temporary_cal_data = [' ' if day == 0 else str(day) for day in cal_data[i]]
+        temporary_cal_data = ['' if day == 0 else str(day) for day in cal_data[i]]
         temporary_list = []
         print(temporary_cal_data)
         for j in range(len(temporary_cal_data)):
-            if temporary_cal_data[j] != ' ':
+            if temporary_cal_data[j] != '':
                 day += 1
             else:
                 temporary_data = [temporary_cal_data[j], '']
@@ -42,7 +44,8 @@ def show_cal(request):
                 temporary_date = dt.date(year, month, day)
                 date = '{0:%Y-%m-%d}'.format(temporary_date)
                 print(date)
-                temporary_data = [temporary_cal_data[j], show_task(request, date)]
+                task_list = show_task(request, date)
+                temporary_data = [temporary_cal_data[j], task_list]
                 temporary_list.append(temporary_data)
             #曜日が範囲外になった時を除く
             except ValueError:
@@ -72,7 +75,8 @@ def show_task(request, date):
     for get_data in data:
         temporary_data = get_data.multi_return()
         if str(temporary_data[1]) == str(date):
-            task_data.append(temporary_data[0])
+            temporary_list = [temporary_data[0], get_data.id]
+            task_data.append(temporary_list)
     if len(task_data) == 0:
         task_data.append('')
     return task_data
@@ -110,3 +114,16 @@ def create_todo(request):
     }
 
     return render(request, 'all_list/create_todo.html', params)
+
+def edit_todo(request, num):
+    todo = ToDo.objects.get(pk=num)
+    if (request.method == 'POST'):
+        task = ToDoForm(request.POST, instance=todo)
+        task.save()
+        return redirect(to='/all_list/cal')
+    
+    params = {
+        'form': ToDoForm(instance=todo),
+        'id': num,
+    }
+    return render(request, 'all_list/edit_todo.html', params)

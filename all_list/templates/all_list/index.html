@@ -7,22 +7,35 @@
     <style>
         table{
             width: 100%;
+            height: 100%;
             table-layout: fixed;
         }
         .fixbox{
             border: 1;
             width: 100%;
+            height: 100%;
             top: 5px;
             position: sticky;
             color: #fff;
             background: #333;
             z-index: 1;
         }
+        .calrow{
+            height: 100%;
+        }
         .calbox{
             width: 100%;
+            height: 100%;
             table-layout: fixed;
             height: auto;
             position: relative;
+        }
+        .cal-button{
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
         }
         .day{
             position: absolute;
@@ -127,27 +140,28 @@
             <tr class="calrow">
                 {% for day, todo in data %}
                 <td class="calbox">
-                    <p>
-                        <span class="day">
-                            {{ day }}
-                        </span>
-                        {% for task in todo %}
-                        <span class="todo">
-                            {% if task.0 != '' %}
-                            <span class="checkbox">
-                                {% if task.2 == True %}
-                                <span class="check"></span>
-                                {% endif %}
+                    <button class="cal-button">
+                        <p>
+                            <span class="day">
+                                {{ day }}
                             </span>
+                            {% for task in todo %}
+                            {% if task.0 != '' %}
+                            <span class="todo">
+                                <span class="checkbox">
+                                    {% if task.2 == True %}
+                                    <span class="check"></span>
+                                    {% endif %}
+                                </span>
+                                {{ task.0 }}
+                                <a href="{% url 'edit_todo' task.1 %}">edit</a>
+                            </span>
+                            {% else %}
+                            <span class="todo"></span>
                             {% endif %}
-                            
-                            {{ task.0 }}
-                            {% if task.1 < 50000000 %}
-                            <a href="{% url 'edit_todo' task.1 %}">edit</a>
-                            {% endif %}
-                        </span>
-                        {% endfor %}
-                    </p>
+                            {% endfor %}
+                        </p>
+                    </button>
                 </td>
                 {% endfor %}
             </tr>

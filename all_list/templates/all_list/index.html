@@ -111,7 +111,10 @@
                         </span>
                         {% for task in todo %}
                         <span class="todo">
-                            {{ task }}
+                            {{ task.0 }}
+                            {% if task.1 < 50000000 %}
+                            <a href="{% url 'edit_todo' task.1 %}">edit</a>
+                            {% endif %}
                         </span>
                         {% endfor %}
                     </p>

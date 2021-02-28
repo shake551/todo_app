@@ -1,6 +1,9 @@
 from django import forms
+from django.forms import ModelForm
 
-class ToDoForm(forms.Form):
+from .models import ToDo
+
+class ToDoForm(forms.ModelForm):
     end = forms.BooleanField(label='完了', required=False)
     task = forms.CharField(label='title', max_length=100)
     limit = forms.DateField(label='期限',
@@ -11,3 +14,7 @@ class ToDoForm(forms.Form):
         input_formats=['%H:%i'],
         required=False)
     memo = forms.CharField(label='詳細', max_length=500, required=False)
+    
+    class Meta:
+        model = ToDo
+        fields = ['end', 'task', 'limit', 'limit_time', 'memo']

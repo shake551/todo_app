@@ -75,10 +75,10 @@ def show_task(request, date):
     for get_data in data:
         temporary_data = get_data.multi_return()
         if str(temporary_data[1]) == str(date):
-            temporary_list = [temporary_data[0], get_data.id]
+            temporary_list = [temporary_data[0], get_data.id, temporary_data[2]]
             task_data.append(temporary_list)
     if len(task_data) == 0:
-        task_data.append('')
+        task_data.append(['', '', ''])
     return task_data
 
 def create_todo(request):

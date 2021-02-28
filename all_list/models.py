@@ -7,4 +7,4 @@ class ToDo(models.Model):
     memo = models.CharField(max_length=500)
 
     def multi_return(self):
-        return self.task, self.limit
+        return self.task, self.limit, self.end

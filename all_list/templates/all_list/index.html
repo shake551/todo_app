@@ -34,6 +34,25 @@
             width: 100%;
             text-align: center;
         }
+        .checkbox{
+            position: absolute;
+            display: inline-block;
+            left: 1%;
+            content: '';
+            width: 20px;
+            height: 20px;
+            border: 1px solid #9c9c9c;
+            border-radius: 50%;
+        }
+        .check{
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 5px;
+            border-left: solid #25AF01;
+            border-bottom: solid #25AF01;
+            transform: rotate(-45deg);
+        }
         .btn{
             position: relative;
             width: 5%;
@@ -111,6 +130,14 @@
                         </span>
                         {% for task in todo %}
                         <span class="todo">
+                            {% if task.0 != '' %}
+                            <span class="checkbox">
+                                {% if task.2 == True %}
+                                <span class="check"></span>
+                                {% endif %}
+                            </span>
+                            {% endif %}
+                            
                             {{ task.0 }}
                             {% if task.1 < 50000000 %}
                             <a href="{% url 'edit_todo' task.1 %}">edit</a>

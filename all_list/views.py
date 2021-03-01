@@ -34,8 +34,10 @@ def show_cal(request):
         temporary_list = []
         print(temporary_cal_data)
         for j in range(len(temporary_cal_data)):
+            #日付が入っている場合
             if temporary_cal_data[j] != '':
                 day += 1
+            #日付が入っていない場合
             else:
                 temporary_data = [temporary_cal_data[j], '']
                 temporary_list.append(temporary_data)
@@ -44,16 +46,19 @@ def show_cal(request):
                 temporary_date = dt.date(year, month, day)
                 date = '{0:%Y-%m-%d}'.format(temporary_date)
                 print(date)
+                #その日のtaskをtask_listに代入
                 task_list = show_task(request, date)
                 temporary_data = [temporary_cal_data[j], task_list]
                 temporary_list.append(temporary_data)
             #曜日が範囲外になった時を除く
             except ValueError:
                 print('x')
+            #リストの長さが7になったらmonthly_calenderに追加
             if len(temporary_list) == 7:
                 monthly_calendar.append(temporary_list)
                 print('append')
                 print(temporary_list)
+            #日付がその月の日数と同じになったら
             if day == day_count:
                 day += 1
             print('for')
@@ -86,16 +91,19 @@ def create_todo(request):
     if (request.method == 'POST'):
         form = ToDoForm(request.POST)
         if form.is_valid():
+            #formのそれぞれの値を変数に代入
             end = request.POST.get('end')
             task = request.POST.get('task')
             limit = request.POST.get('limit')
             memo = request.POST.get('memo')
 
+            #checkboxの値をbool値に置き換え
             if end == 'on':
                 end = True
             else:
                 end = False
 
+            #formの値をデータベースに登録
             todo = ToDo()
             todo.end = end
             todo.task = task
@@ -116,8 +124,10 @@ def create_todo(request):
     return render(request, 'all_list/create_todo.html', params)
 
 def edit_todo(request, num):
+    #指定されたtaskを取得
     todo = ToDo.objects.get(pk=num)
     if (request.method == 'POST'):
+        #編集する
         task = ToDoForm(request.POST, instance=todo)
         task.save()
         return redirect(to='/all_list/cal')

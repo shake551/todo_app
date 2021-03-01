@@ -26,16 +26,28 @@
         .calbox{
             width: 100%;
             height: 100%;
+            padding-top: 10%;
             table-layout: fixed;
             height: auto;
             position: relative;
+            text-align: center;
         }
-        .cal-button{
+        label{
+            position: absolute;
             display: inline-block;
             width: 100%;
             height: 100%;
-            border: none;
-            background: white;
+            top: 0%;
+            left: 0%;
+            background: #ecc09630;
+        }
+        label span:hover{
+            cursor: pointer;
+        }
+        input[type="checkbox"]{
+            display: none;
+            width: 100%;
+            height: 100%;
         }
         .day{
             position: absolute;
@@ -68,6 +80,50 @@
             border-left: solid #25AF01;
             border-bottom: solid #25AF01;
             transform: rotate(-45deg);
+        }
+        #popup{
+            width: 50%;
+            line-height: 100%;
+            height: 50%;
+            background: #fff;
+            border: 5px solid #000;
+            border-radius: 10px;
+            padding: 0 4%;
+            box-sizing: border-box;
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        /*checkboxがcheckの状態になったらpopupを表示させる*/
+        input[type="checkbox"]:checked + #popup{
+            display: block;
+        }
+        .popup-todo{
+            width: 100%;
+            position: relative;
+            top: 30%;
+        }
+        .edit-button{
+            background: rgba(124, 164, 238, 0.502);
+            border-radius: 10px;
+            position: absolute;
+            display: inline-block;
+            right: 5%;
+            content: '';
+        }
+        .detail-btn{
+            background: #9c9c9c;
+            border-radius: 7px;
+            position: absolute;
+            display: inline-block;
+            content: '';
+            bottom: 5%;
+            right: 40%;
+            width: 20%;
         }
         .btn{
             position: relative;
@@ -140,34 +196,69 @@
             <tr class="calrow">
                 {% for day, todo in data %}
                 <td class="calbox">
-                    <button class="cal-button">
-                        <p>
-                            <span class="day">
-                                {{ day }}
-                            </span>
-                            {% for task in todo %}
-                            {% if task.0 != '' %}
-                            <span class="todo">
-                                <span class="checkbox">
-                                    {% if task.2 == True %}
-                                    <span class="check"></span>
-                                    {% endif %}
+                    {% if day != '' %}
+                    <label>
+                        <span>
+                            <p>
+                                <span class="day">
+                                    {{ day }}
                                 </span>
-                                {{ task.0 }}
-                                <a href="{% url 'edit_todo' task.1 %}">edit</a>
-                            </span>
-                            {% else %}
-                            <span class="todo"></span>
-                            {% endif %}
-                            {% endfor %}
-                        </p>
-                    </button>
-                </td>
+                                {% for task in todo %}
+                                {% if task.0 != '' %}
+                                <span class="todo">
+                                    <span class="checkbox">
+                                        {% if task.2 == True %}
+                                        <span class="check"></span>
+                                        {% endif %}
+                                    </span>
+                                    {{ task.0 }}
+                                </span>
+                                {% else %}
+                                <span class="todo"></span>
+                                {% endif %}
+                                {% endfor %}
+                            </p>
+                        </supan>
+                        <input type="checkbox" name="checkbox">
+                            <div id="popup">
+                                <p>
+                                    <h1>
+                                        {{ day }}日
+                                    </h1>
+                                    <div class="popup-todo">
+                                    {% for task in todo %}
+                                    {% if task.0 != '' %}
+                                        <h3>
+                                        <span class="todo">
+                                            <span class="checkbox">
+                                                {% if task.2 == True %}
+                                                <span class="check"></span>
+                                                {% endif %}
+                                            </span>
+                                                {{ task.0 }}
+                                                <button onclick="location.href='{% url 'edit_todo' task.1 %}'" class="edit-button">edit</button>
+                                        </span>
+                                        </h3>
+                                        {% else %}
+                                        <span class="todo">
+                                            <h3>
+                                                taskは登録されていません
+                                            </h3>
+                                        </span>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </p>
+                                <input type="button" onclick="location.href='./cal'" value="戻る" class="detail-btn">
+                            </div>
+                        </label>
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+            </table>
+        </div>
     <div class="btn">
         <a href="/all_list/create_todo" class="link">＋</a>
     </div>

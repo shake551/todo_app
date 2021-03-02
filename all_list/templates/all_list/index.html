@@ -54,6 +54,14 @@
             right: 0%;
             top: 0%;
         }
+        .cal-task{
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            -webkit-transform: translateY(-50%) translateX(-50%);
+        }
         .todo{
             display: inline-block;
             width: 100%;
@@ -203,20 +211,22 @@
                                 <span class="day">
                                     {{ day }}
                                 </span>
-                                {% for task in todo %}
-                                {% if task.0 != '' %}
-                                <span class="todo">
-                                    <span class="checkbox">
-                                        {% if task.2 == True %}
-                                        <span class="check"></span>
-                                        {% endif %}
+                                <div class="cal-task">
+                                    {% for task in todo %}
+                                    {% if task.0 != '' %}
+                                    <span class="todo">
+                                        <span class="checkbox">
+                                            {% if task.2 == True %}
+                                            <span class="check"></span>
+                                            {% endif %}
+                                        </span>
+                                        {{ task.0 }}
                                     </span>
-                                    {{ task.0 }}
-                                </span>
-                                {% else %}
-                                <span class="todo"></span>
-                                {% endif %}
-                                {% endfor %}
+                                    {% else %}
+                                    <span class="todo"></span>
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
                             </p>
                         </supan>
                         <input type="checkbox" name="checkbox">

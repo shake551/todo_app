@@ -8,3 +8,6 @@ class ToDo(models.Model):
 
     def multi_return(self):
         return self.task, self.limit, self.end
+
+    def __str__(self):
+        return str(self.limit) + self.task

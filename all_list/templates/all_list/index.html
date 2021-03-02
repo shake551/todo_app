@@ -115,13 +115,19 @@
             position: relative;
             top: 30%;
         }
-        .edit-button{
-            background: rgba(124, 164, 238, 0.502);
+        .edit-button, .delete-button{
             border-radius: 10px;
             position: absolute;
             display: inline-block;
-            right: 5%;
             content: '';
+        }
+        .edit-button{
+            background: rgba(124, 164, 238, 0.502);
+            right: 5%;
+        }
+        .delete-button{
+            background: rgba(238, 124, 124, 0.502);
+            right: 15%;
         }
         .detail-btn{
             background: #9c9c9c;
@@ -247,6 +253,7 @@
                                             </span>
                                                 {{ task.0 }}
                                                 <button onclick="location.href='{% url 'edit_todo' task.1 %}'" class="edit-button">edit</button>
+                                                <button onclick="location.href='{% url 'delete_todo' task.1 %}'" class="delete-button">delete</button>
                                         </span>
                                         </h3>
                                         {% else %}

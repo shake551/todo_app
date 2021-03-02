@@ -12,7 +12,7 @@ from .forms import ToDoForm
 
 def show_cal(request):
     year = 2021
-    month = 2
+    month = 3
 
     year_and_month = str(year) + "年" + str(month) + "月"
 
@@ -137,3 +137,16 @@ def edit_todo(request, num):
         'id': num,
     }
     return render(request, 'all_list/edit_todo.html', params)
+
+def delete_todo(request, num):
+    #指定されたtaskを取得
+    todo = ToDo.objects.get(pk=num)
+    if (request.method == 'POST'):
+        todo.delete()
+        return redirect(to='/all_list/cal')
+    
+    params = {
+        'obj': todo,
+        'id': num,
+    }
+    return render(request, 'all_list/delete_todo.html', params)

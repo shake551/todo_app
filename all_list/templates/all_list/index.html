@@ -137,17 +137,17 @@
             background: rgba(238, 124, 124, 0.502);
             right: 15%;
         }
-        .detail-btn{
+        .back-btn{
             background: #9c9c9c;
             border-radius: 7px;
             position: absolute;
             display: inline-block;
             content: '';
             bottom: 5%;
-            right: 40%;
+            right: 10%;
             width: 20%;
         }
-        .btn{
+        .btn, .box-btn{
             position: relative;
             width: 5%;
             padding-top: 5%;
@@ -155,16 +155,25 @@
             border-radius: 50%;
             left: 50%;
         }
-        .link{
+        .box-btn{
+            position: absolute;
+            bottom: 5%;
+        }
+        .link, .box-link{
             position: absolute;
             top: 50%;
             left: 0;
             transform: translateY(-50%);
             width: 100%;
             text-align: center;
-            font-size: 5vw;
             color: white;
             text-decoration: none;
+        }
+        .link{
+            font-size: 5vw;
+        }
+        .box-link{
+            font-size: 2vw;
         }
     </style>
 </head>
@@ -274,7 +283,11 @@
                                         {% endfor %}
                                     </div>
                                 </p>
-                                <input type="button" onclick="location.href='./cal'" value="戻る" class="detail-btn">
+                                <div class="box-btn">
+                                    <a href="/all_list/create_todo" class="box-link">＋</a>
+                                </div>
+                                <!--<button onclick="location.href='{% url 'create_todo' %}'" class="cre_btn" value="+"></button>-->
+                                <input type="button" onclick="location.href='./cal'" value="戻る" class="back-btn">
                             </div>
                         </label>
                         {% endif %}

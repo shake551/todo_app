@@ -71,6 +71,8 @@ def show_cal(request):
     params = {
         'year_and_month': year_and_month,
         'monthly_calendar': monthly_calendar,
+        'year': year,
+        'month': month,
     }
     return render(request, 'all_list/index.html', params)
 

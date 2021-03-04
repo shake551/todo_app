@@ -269,8 +269,8 @@
                                                 {% endif %}
                                             </span>
                                                 {{ task.0 }}
-                                                <button onclick="location.href='{% url 'edit_todo' task.1 %}'" class="edit-button">edit</button>
-                                                <button onclick="location.href='{% url 'delete_todo' task.1 %}'" class="delete-button">delete</button>
+                                                <button onclick="location.href='{% url 'edit' task.1 %}'" class="edit-button">edit</button>
+                                                <button onclick="location.href='{% url 'delete' task.1 %}'" class="delete-button">delete</button>
                                         </span>
                                         </h3>
                                         {% else %}
@@ -284,9 +284,9 @@
                                     </div>
                                 </p>
                                 <div class="box-btn">
-                                    <a href="/all_list/create_todo" class="box-link">＋</a>
+                                    <a href="/all_list/create" class="box-link">＋</a>
                                 </div>
-                                <!--<button onclick="location.href='{% url 'create_todo' %}'" class="cre_btn" value="+"></button>-->
+                                <!--<button onclick="location.href='{% url 'create' %}'" class="cre_btn" value="+"></button>-->
                                 <input type="button" onclick="location.href='./cal'" value="戻る" class="back-btn">
                             </div>
                         </label>
@@ -298,7 +298,7 @@
             </table>
         </div>
     <div class="btn">
-        <a href="/all_list/create_todo" class="link">＋</a>
+        <a href="/all_list/create" class="link">＋</a>
     </div>
 </body>
 </html>

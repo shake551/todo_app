@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('cal', views.show_cal, name='show_cal'),
-    path('create_todo', views.create_todo, name='create_todo'),
-    path('edit_todo/<int:num>/', views.edit_todo, name='edit_todo'),
-    path('delete_todo/<int:num>/', views.delete_todo, name='delete_todo'),
+    path('create', views.create, name='create'),
+    path('edit/<int:num>/', views.edit, name='edit'),
+    path('delete/<int:num>/', views.delete, name='delete'),
 ]

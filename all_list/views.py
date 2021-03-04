@@ -88,7 +88,7 @@ def show_task(request, date):
         task_data.append(['', '', ''])
     return task_data
 
-def create_todo(request):
+def create(request):
     #POST送信の処理
     if (request.method == 'POST'):
         form = ToDoForm(request.POST)
@@ -123,9 +123,9 @@ def create_todo(request):
         'form': form,
     }
 
-    return render(request, 'all_list/create_todo.html', params)
+    return render(request, 'all_list/create.html', params)
 
-def edit_todo(request, num):
+def edit(request, num):
     #指定されたtaskを取得
     todo = ToDo.objects.get(pk=num)
     if (request.method == 'POST'):
@@ -138,9 +138,9 @@ def edit_todo(request, num):
         'form': ToDoForm(instance=todo),
         'id': num,
     }
-    return render(request, 'all_list/edit_todo.html', params)
+    return render(request, 'all_list/edit.html', params)
 
-def delete_todo(request, num):
+def delete(request, num):
     #指定されたtaskを取得
     todo = ToDo.objects.get(pk=num)
     if (request.method == 'POST'):
@@ -151,4 +151,4 @@ def delete_todo(request, num):
         'obj': todo,
         'id': num,
     }
-    return render(request, 'all_list/delete_todo.html', params)
+    return render(request, 'all_list/delete.html', params)

@@ -95,13 +95,9 @@
             transform: rotate(-45deg);
         }
         #popup{
-            width: 50%;
-            line-height: 100%;
-            height: 50%;
-            background: #fff;
-            border: 5px solid #000;
-            border-radius: 10px;
-            padding: 0 4%;
+            width: 100%;
+            height: 100%;
+            background: none;
             box-sizing: border-box;
             display: none;
             position: fixed;
@@ -114,6 +110,22 @@
         /*checkboxがcheckの状態になったらpopupを表示させる*/
         input[type="checkbox"]:checked + #popup{
             display: block;
+        }
+        .popup-box{
+            width: 50%;
+            line-height: 100%;
+            height: 50%;
+            background: #fff;
+            border: 5px solid #000;
+            border-radius: 10px;
+            padding: 0 4%;
+            box-sizing: border-box;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            z-index: 5;
         }
         .popup-todo{
             width: 100%;
@@ -254,40 +266,42 @@
                         </supan>
                         <input type="checkbox" name="checkbox">
                             <div id="popup">
-                                <p>
-                                    <h1>
-                                        {{ day }}日
-                                    </h1>
-                                    <div class="popup-todo">
-                                    {% for task in todo %}
-                                    {% if task.0 != '' %}
-                                        <h3>
-                                        <span class="todo">
-                                            <span class="checkbox">
-                                                {% if task.2 == True %}
-                                                <span class="check"></span>
-                                                {% endif %}
-                                            </span>
-                                                {{ task.0 }}
-                                                <button onclick="location.href='{% url 'edit' task.1 %}'" class="edit-button">edit</button>
-                                                <button onclick="location.href='{% url 'delete' task.1 %}'" class="delete-button">delete</button>
-                                        </span>
-                                        </h3>
-                                        {% else %}
-                                        <span class="todo">
+                                <div class="popup-box">
+                                    <p>
+                                        <h1>
+                                            {{ day }}日
+                                        </h1>
+                                        <div class="popup-todo">
+                                        {% for task in todo %}
+                                        {% if task.0 != '' %}
                                             <h3>
-                                                taskは登録されていません
+                                            <span class="todo">
+                                                <span class="checkbox">
+                                                    {% if task.2 == True %}
+                                                    <span class="check"></span>
+                                                    {% endif %}
+                                                </span>
+                                                    {{ task.0 }}
+                                                    <button onclick="location.href='{% url 'edit' task.1 %}'" class="edit-button">edit</button>
+                                                    <button onclick="location.href='{% url 'delete' task.1 %}'" class="delete-button">delete</button>
+                                            </span>
                                             </h3>
-                                        </span>
-                                        {% endif %}
-                                        {% endfor %}
+                                            {% else %}
+                                            <span class="todo">
+                                                <h3>
+                                                    taskは登録されていません
+                                                </h3>
+                                            </span>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </p>
+                                    <div class="box-btn">
+                                        <a href="/all_list/create" class="box-link">＋</a>
                                     </div>
-                                </p>
-                                <div class="box-btn">
-                                    <a href="/all_list/create" class="box-link">＋</a>
+                                    <!--<button onclick="location.href='{% url 'create' %}'" class="cre_btn" value="+"></button>-->
+                                    <input type="button" onclick="location.href='./cal'" value="戻る" class="back-btn">
                                 </div>
-                                <!--<button onclick="location.href='{% url 'create' %}'" class="cre_btn" value="+"></button>-->
-                                <input type="button" onclick="location.href='./cal'" value="戻る" class="back-btn">
                             </div>
                         </label>
                         {% endif %}

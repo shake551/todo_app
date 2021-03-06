@@ -6,15 +6,30 @@ from django.contrib.auth.decorators import login_required
 from django.forms import ModelForm
 import calendar
 import datetime as dt
+from dateutil.relativedelta import relativedelta
 
 from .models import ToDo
 from .forms import ToDoForm
 
-def show_cal(request):
-    year = 2021
-    month = 3
+def show_cal(request, year=None, month=None):
+    if year == None:
+        today = dt.datetime.today()
+        year = dt.datetime.strftime(today, "%Y")
+    if month == None:
+        today = dt.datetime.today()
+        month = dt.datetime.strftime(today, "%m")
+    year = int(year)
+    month = int(month)
 
-    year_and_month = str(year) + "年" + str(month) + "月"
+    now = dt.datetime(year, month, 1)
+
+    next_dt = now + relativedelta(months=1)
+    next_year = dt.datetime.strftime(next_dt, "%Y")
+    next_month = dt.datetime.strftime(next_dt, "%m")
+
+    before_dt = now - relativedelta(months=1)
+    before_year = dt.datetime.strftime(before_dt, "%Y")
+    before_month = dt.datetime.strftime(before_dt, "%m")
 
     #day_countにその月の日数を代入
     day_count = calendar.monthrange(year, month)[1]
@@ -69,10 +84,13 @@ def show_cal(request):
     print(monthly_calendar)
 
     params = {
-        'year_and_month': year_and_month,
         'monthly_calendar': monthly_calendar,
         'year': year,
         'month': month,
+        'before_year': before_year,
+        'before_month': before_month,
+        'next_year': next_year,
+        'next_month': next_month,
     }
     return render(request, 'all_list/index.html', params)
 

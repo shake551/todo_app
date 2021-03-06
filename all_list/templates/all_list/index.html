@@ -9,7 +9,7 @@
 
 <body>
     <h1>
-        {{ year_and_month }}
+        {{ year }} / {{ month }}
     </h1>
     <div>
         <table class="fixbox", border="1">
@@ -128,6 +128,11 @@
                 {% endfor %}
             </table>
         </div>
+    <div>
+        <br>
+    </div>
+    <button onclick="location.href='{% url 'show_cal' before_year before_month %}'" class="before-btn">before</button>
+    <button onclick="location.href='{% url 'show_cal' next_year next_month %}'" class="next-btn">next</button>
     <div class="btn">
         <a href="/all_list/create" class="link">＋</a>
     </div>

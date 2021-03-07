@@ -12,11 +12,10 @@ from .models import ToDo
 from .forms import ToDoForm
 
 def show_cal(request, year=None, month=None):
+    today = dt.datetime.today()
     if year == None:
-        today = dt.datetime.today()
         year = dt.datetime.strftime(today, "%Y")
     if month == None:
-        today = dt.datetime.today()
         month = dt.datetime.strftime(today, "%m")
     year = int(year)
     month = int(month)
@@ -107,6 +106,10 @@ def show_task(request, date):
     return task_data
 
 def create(request):
+    today = dt.datetime.today()
+    year = dt.datetime.strftime(today, "%Y")
+    month = dt.datetime.strftime(today, "%m")
+
     #POST送信の処理
     if (request.method == 'POST'):
         form = ToDoForm(request.POST)
@@ -130,7 +133,7 @@ def create(request):
             todo.limit = limit
             todo.memo = memo
             todo.save()
-        return redirect(to='/all_list/cal')
+        return redirect(to='/all_list/cal/year/month')
 
     #GETアクセス時の処理
     else:
@@ -144,13 +147,17 @@ def create(request):
     return render(request, 'all_list/create.html', params)
 
 def edit(request, num):
+    today = dt.datetime.today()
+    year = int(dt.datetime.strftime(today, "%Y"))
+    month = int(dt.datetime.strftime(today, "%m"))
+
     #指定されたtaskを取得
     todo = ToDo.objects.get(pk=num)
     if (request.method == 'POST'):
         #編集する
         task = ToDoForm(request.POST, instance=todo)
         task.save()
-        return redirect(to='/all_list/cal')
+        return redirect('show_cal', year, month)
     
     params = {
         'form': ToDoForm(instance=todo),
@@ -159,11 +166,15 @@ def edit(request, num):
     return render(request, 'all_list/edit.html', params)
 
 def delete(request, num):
+    today = dt.datetime.today()
+    year = dt.datetime.strftime(today, "%Y")
+    month = dt.datetime.strftime(today, "%m")
+    
     #指定されたtaskを取得
     todo = ToDo.objects.get(pk=num)
     if (request.method == 'POST'):
         todo.delete()
-        return redirect(to='/all_list/cal')
+        return redirect('show_cal', year, month)
     
     params = {
         'obj': todo,

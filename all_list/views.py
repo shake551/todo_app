@@ -133,7 +133,7 @@ def create(request):
             todo.limit = limit
             todo.memo = memo
             todo.save()
-        return redirect(to='/all_list/cal/year/month')
+        return redirect('show_cal', year, month)
 
     #GETアクセス時の処理
     else:

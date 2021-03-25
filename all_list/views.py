@@ -3,6 +3,7 @@ from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.forms import ModelForm
 import calendar
 import datetime as dt
@@ -11,6 +12,7 @@ from dateutil.relativedelta import relativedelta
 from .models import ToDo
 from .forms import ToDoForm
 
+@login_required(login_url='/admin/login/')
 def show_cal(request, year=None, month=None):
     today = dt.datetime.today()
     if year == None:
@@ -93,8 +95,9 @@ def show_cal(request, year=None, month=None):
     }
     return render(request, 'all_list/index.html', params)
 
+@login_required(login_url='/admin/login/')
 def show_task(request, date):
-    data = ToDo.objects.all()
+    data = ToDo.objects.filter(author_name__exact = request.user)
     task_data = []
     for get_data in data:
         temporary_data = get_data.multi_return()
@@ -105,6 +108,7 @@ def show_task(request, date):
         task_data.append(['', '', ''])
     return task_data
 
+@login_required(login_url='/admin/login/')
 def create(request):
     today = dt.datetime.today()
     year = dt.datetime.strftime(today, "%Y")
@@ -115,6 +119,7 @@ def create(request):
         form = ToDoForm(request.POST)
         if form.is_valid():
             #formのそれぞれの値を変数に代入
+            author_name = request.user
             end = request.POST.get('end')
             task = request.POST.get('task')
             limit = request.POST.get('limit')
@@ -128,6 +133,7 @@ def create(request):
 
             #formの値をデータベースに登録
             todo = ToDo()
+            todo.author_name = author_name
             todo.end = end
             todo.task = task
             todo.limit = limit
@@ -146,6 +152,7 @@ def create(request):
 
     return render(request, 'all_list/create.html', params)
 
+@login_required(login_url='/admin/login/')
 def edit(request, num):
     today = dt.datetime.today()
     year = int(dt.datetime.strftime(today, "%Y"))
@@ -165,6 +172,7 @@ def edit(request, num):
     }
     return render(request, 'all_list/edit.html', params)
 
+@login_required(login_url='/admin/login/')
 def delete(request, num):
     today = dt.datetime.today()
     year = dt.datetime.strftime(today, "%Y")

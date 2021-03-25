@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class ToDo(models.Model):
+    author_name = models.ForeignKey(User, on_delete=models.CASCADE)
     end = models.BooleanField()
     task = models.CharField(max_length=100)
     limit = models.DateField()

@@ -3,7 +3,9 @@ from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LogoutView
 from django.contrib.auth.models import User
+from django.views import generic
 from django.forms import ModelForm
 import calendar
 import datetime as dt
@@ -11,6 +13,18 @@ from dateutil.relativedelta import relativedelta
 
 from .models import ToDo
 from .forms import ToDoForm
+
+def home(request):
+    today = dt.datetime.today()
+    year = dt.datetime.strftime(today, "%Y")
+    month = dt.datetime.strftime(today, "%m")
+
+    params = {
+        'year': year,
+        'month': month,
+    }
+
+    return render(request, 'all_list/home.html', params)
 
 @login_required(login_url='/admin/login/')
 def show_cal(request, year=None, month=None):
@@ -189,3 +203,6 @@ def delete(request, num):
         'id': num,
     }
     return render(request, 'all_list/delete.html', params)
+
+class Logout(LogoutView):
+    template_name = 'all_list/logout.html'

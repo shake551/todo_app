@@ -1,5 +1,6 @@
 h1{
     text-align: center;
+    position: relative;
 }
 table{
     width: 100%;
@@ -168,7 +169,7 @@ input[type="checkbox"]:checked + #popup{
 .next-btn{
     right: 25%;
 }
-.btn, .box-btn{
+.create-btn, .box-btn{
     position: relative;
     width: 5%;
     padding-top: 5%;
@@ -180,7 +181,7 @@ input[type="checkbox"]:checked + #popup{
     position: absolute;
     bottom: 5%;
 }
-.link, .box-link{
+.link-btn, .box-link{
     position: absolute;
     top: 50%;
     left: 0;
@@ -190,7 +191,7 @@ input[type="checkbox"]:checked + #popup{
     color: white;
     text-decoration: none;
 }
-.link{
+.link-btn{
     font-size: 5vw;
 }
 .box-link{

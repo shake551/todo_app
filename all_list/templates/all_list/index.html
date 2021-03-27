@@ -3,15 +3,21 @@
 <html lang="jp"> 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <title>all_list</title>
 </head>
 
 <body>
-    <h1>
-        {{ year }} / {{ month }}
-        <button onclick="location.href='{% url 'logout' %}'">logout</button>
-    </h1>
+    <div class="container bg-light">
+        <h1 class="my-3">
+            {{ year }} / {{ month }}
+            <div class="float-right">
+                <button onclick="location.href='{% url 'logout' %}'" class="btn btn-info">logout</button>
+            </div>
+        </h1>
+    </div>
     <div>
         <table class="fixbox", border="1">
             <tr>
@@ -73,7 +79,7 @@
                                             <span class="check"></span>
                                             {% endif %}
                                         </span>
-                                        {{ task.0 }}
+                                    {{ task.0 }}
                                     </span>
                                     {% else %}
                                     <span class="todo"></span>
@@ -83,59 +89,58 @@
                             </p>
                         </supan>
                         <input type="checkbox" name="checkbox">
-                            <div id="popup">
-                                <div class="popup-box">
-                                    <p>
-                                        <h1>
-                                            {{ day }}日
-                                        </h1>
-                                        <div class="popup-todo">
+                        <div id="popup">
+                            <div class="popup-box">
+                                <p>
+                                    <h1>
+                                        {{ day }}日
+                                    </h1>
+                                    <div class="popup-todo">
                                         {% for task in todo %}
                                         {% if task.0 != '' %}
+                                        <h3>
+                                        <span class="todo">
+                                            <span class="checkbox">
+                                                {% if task.2 == True %}
+                                                <span class="check"></span>
+                                                {% endif %}
+                                            </span>
+                                                {{ task.0 }}
+                                            <button onclick="location.href='{% url 'edit' task.1 %}'" class="edit-button">edit</button>                                                <button onclick="location.href='{% url 'delete' task.1 %}'" class="delete-button">delete</button>
+                                        </span>
+                                        </h3>
+                                        {% else %}
+                                        <span class="todo">
                                             <h3>
-                                            <span class="todo">
-                                                <span class="checkbox">
-                                                    {% if task.2 == True %}
-                                                    <span class="check"></span>
-                                                    {% endif %}
-                                                </span>
-                                                    {{ task.0 }}
-                                                    <button onclick="location.href='{% url 'edit' task.1 %}'" class="edit-button">edit</button>
-                                                    <button onclick="location.href='{% url 'delete' task.1 %}'" class="delete-button">delete</button>
-                                            </span>
+                                                taskは登録されていません
                                             </h3>
-                                            {% else %}
-                                            <span class="todo">
-                                                <h3>
-                                                    taskは登録されていません
-                                                </h3>
-                                            </span>
-                                            {% endif %}
-                                            {% endfor %}
-                                        </div>
-                                    </p>
-                                    <div class="box-btn">
-                                        <a href="/all_list/create" class="box-link">＋</a>
+                                        </span>
+                                        {% endif %}
+                                        {% endfor %}
                                     </div>
-                                    <!--<button onclick="location.href='{% url 'create' %}'" class="cre_btn" value="+"></button>-->
-                                    <button onclick="location.href='{% url 'show_cal' year month %}'" class="back-btn">戻る</button>
+                                </p>
+                                <div class="box-btn">
+                                    <a href="/all_list/create" class="box-link">＋</a>
                                 </div>
+                                <!--<button onclick="location.href='{% url 'create' %}'" class="cre_btn" value="+"></button>-->
+                                <button onclick="location.href='{% url 'show_cal' year month %}'" class="back-btn">戻る</button>
                             </div>
-                        </label>
-                        {% endif %}
-                    </td>
-                    {% endfor %}
-                </tr>
+                        </div>
+                    </label>
+                    {% endif %}
+                </td>
                 {% endfor %}
-            </table>
-        </div>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
     <div>
         <br>
     </div>
     <button onclick="location.href='{% url 'show_cal' before_year before_month %}'" class="before-btn">before</button>
     <button onclick="location.href='{% url 'show_cal' next_year next_month %}'" class="next-btn">next</button>
-    <div class="btn">
-        <a href="/all_list/create" class="link">＋</a>
+    <div class="create-btn">
+        <a href="/all_list/create" class="link-btn">＋</a>
     </div>
 </body>
 </html>

@@ -10,11 +10,11 @@
 </head>
 
 <body>
-    <div class="container bg-light">
+    <div class="container">
         <h1 class="my-3">
             {{ year }} / {{ month }}
             <div class="float-right">
-                <button onclick="location.href='{% url 'logout' %}'" class="btn btn-info">logout</button>
+                <button onclick="location.href='{% url 'logout' %}'" class="btn btn-info btn-lg">logout</button>
             </div>
         </h1>
     </div>
@@ -87,7 +87,7 @@
                                     {% endfor %}
                                 </div>
                             </p>
-                        </supan>
+                        </span>
                         <input type="checkbox" name="checkbox">
                         <div id="popup">
                             <div class="popup-box">
@@ -106,7 +106,8 @@
                                                 {% endif %}
                                             </span>
                                                 {{ task.0 }}
-                                            <button onclick="location.href='{% url 'edit' task.1 %}'" class="edit-button">edit</button>                                                <button onclick="location.href='{% url 'delete' task.1 %}'" class="delete-button">delete</button>
+                                            <button onclick="location.href='{% url 'edit' task.1 %}'" class="btn btn-outline-primary btn-sm float-right">edit</button>
+                                            <button onclick="location.href='{% url 'delete' task.1 %}'" class="btn btn-outline-danger btn-sm float-right">delete</button>
                                         </span>
                                         </h3>
                                         {% else %}
@@ -119,11 +120,9 @@
                                         {% endfor %}
                                     </div>
                                 </p>
-                                <div class="box-btn">
-                                    <a href="/all_list/create" class="box-link">＋</a>
+                                <div>
+                                    <button onclick="location.href='{% url 'create' %}'" class="btn btn-secondary rounded-circle p-0 btn-lg" style="width:3rem;height:3rem;">＋</button>
                                 </div>
-                                <!--<button onclick="location.href='{% url 'create' %}'" class="cre_btn" value="+"></button>-->
-                                <button onclick="location.href='{% url 'show_cal' year month %}'" class="back-btn">戻る</button>
                             </div>
                         </div>
                     </label>
@@ -137,10 +136,16 @@
     <div>
         <br>
     </div>
-    <button onclick="location.href='{% url 'show_cal' before_year before_month %}'" class="before-btn">before</button>
-    <button onclick="location.href='{% url 'show_cal' next_year next_month %}'" class="next-btn">next</button>
-    <div class="create-btn">
-        <a href="/all_list/create" class="link-btn">＋</a>
+    <div class="container">
+        <h1 class="my-3">
+            <span class="before-btn">
+                <button onclick="location.href='{% url 'show_cal' before_year before_month %}'" class="btn btn-outline-info">before</button>
+            </span>
+            <button onclick="location.href='{% url 'create' %}'" class="btn btn-secondary rounded-circle p-0 btn-lg" style="width:3rem;height:3rem;">＋</button>
+            <span class="next-btn">
+                <button onclick="location.href='{% url 'show_cal' next_year next_month %}'" class="btn btn-outline-info">next</button>
+            </span>
+        </h1>
     </div>
 </body>
 </html>

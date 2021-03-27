@@ -132,68 +132,15 @@ input[type="checkbox"]:checked + #popup{
     text-align: center;
     display: inline-block;
 }
-.edit-button, .delete-button{
-    border-radius: 10px;
-    position: absolute;
-    display: inline-block;
-    content: '';
-}
-.edit-button{
-    background: rgba(124, 164, 238, 0.502);
-    right: 5%;
-}
-.delete-button{
-    background: rgba(238, 124, 124, 0.502);
-    right: 15%;
-}
-.back-btn{
-    background: #9c9c9c;
-    border-radius: 7px;
-    position: absolute;
-    display: inline-block;
-    content: '';
-    bottom: 5%;
-    right: 10%;
-    width: 20%;
-}
 .before-btn, .next-btn{
     border-radius: 10px;
     position: absolute;
     display: inline-block;
     content: '';
-    background: rgba(238, 124, 228, 0.502);
 }
 .before-btn{
-    left: 25%;
+    left: 20%;
 }
 .next-btn{
-    right: 25%;
-}
-.create-btn, .box-btn{
-    position: relative;
-    width: 5%;
-    padding-top: 5%;
-    background: gray;
-    border-radius: 50%;
-    left: 50%;
-}
-.box-btn{
-    position: absolute;
-    bottom: 5%;
-}
-.link-btn, .box-link{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    width: 100%;
-    text-align: center;
-    color: white;
-    text-decoration: none;
-}
-.link-btn{
-    font-size: 5vw;
-}
-.box-link{
-    font-size: 2vw;
+    right: 20%;
 }

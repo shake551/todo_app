@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+</head>
+<body class="container">
+    <h1>Login</h1>
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Login" class="btn btn-info">
+        <input type="hidden" name="next" value="{% url 'home' %}">
+        or <button onclick="location.href='{% url 'signup' %}'" class="btn btn-info">Sign Up</button>  
+    </form>
+    <p></p>
+    <button onclick="location.href='{% url 'home' %}'" class="btn btn-info">Homeへ</button>
+</body>
+</html>

@@ -12,7 +12,18 @@
         <h1 class="my-3">
             home
             <div class="float-right">
-                <button onclick="location.href='{% url 'show_cal' year month %}'" class="btn btn-info">カレンダーに戻る</button>
+                {% if user.is_authenticated %}
+                <h3>
+                    {{ user.get_username }}
+                    <button onclick="location.href='{% url 'show_cal' year month %}'" class="btn btn-info">カレンダーへ</button>
+                </h3>
+                {% else %}
+                <h3>
+                    Guest
+                    <button onclick="location.href='{% url 'login' %}'" class="btn btn-info">Login</button>
+                    <button onclick="location.href='{% url 'signup' %}'" class="btn btn-info">Sign Up</button>
+                </h3>
+                {% endif %}
             </div>
         </h1>
     </div>

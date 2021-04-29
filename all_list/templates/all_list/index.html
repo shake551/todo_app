@@ -14,7 +14,14 @@
         <h1 class="my-3">
             {{ year }} / {{ month }}
             <div class="float-right">
-                <button onclick="location.href='{% url 'logout' %}'" class="btn btn-info btn-lg">logout</button>
+                {% if user.is_authenticated %}
+                <h2>
+                    {{ user.get_username }}
+                    <button onclick="location.href='{% url 'logout' %}'" class="btn btn-info btn-lg">logout</button>
+                </h2>
+                {% else %}
+                Guest
+                {% endif %}
             </div>
         </h1>
     </div>

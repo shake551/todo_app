@@ -1,5 +1,4 @@
 django
-sys
 calender
 datetime
 dateutil

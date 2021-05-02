@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="jp">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <title>signup</title>
-</head>
-<body class="container">
+{% extends 'all_list/create.html' %}
+
+{% block title %} signup {% endblock %}
+
+{% block content %}
     <h1>Sign Up</h1>
     <form action="{% url 'signup' %}" method="post">
         {% csrf_token %}
@@ -16,5 +12,4 @@
     </form>
     <p></p>
     <button onclick="location.href='{% url 'home' %}'" class="btn btn-info">Homeへ</button>
-</body>
-</html>
+{% endblock %}

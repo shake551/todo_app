@@ -1,20 +1,14 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="jp">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>logout</title>
-</head>
-<body>
-    <div class="container bg-light">
-        <h1 class="my-3">
+{% extends 'all_list/create.html' %}
+
+{% block title %} logout {% endblock %}
+
+{% block content %}
+    <div class="bg-light">
+        <h1 class="my-3 text-center">
             logoutしました
-            <div class="float-right">
-                <button onclick="location.href='{% url 'home' %}'" class="btn btn-info">homeに戻る</button>
-            </div>
         </h1>
+        <h3 class="float-right">
+            <button onclick="location.href='{% url 'home' %}'" class="btn btn-info">homeに戻る</button>
+        </h3>
     </div>
-</body>
-</html>
+{% endblock %}

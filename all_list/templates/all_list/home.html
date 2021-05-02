@@ -1,31 +1,25 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="jp">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>home</title>
-</head>
-<body>
-    <div class="container bg-light">
-        <h1 class="my-3">
+{% extends 'all_list/create.html' %}
+
+{% block title %} home {% endblock %}
+
+{% block content %}
+    <div class="bg-light">
+        <h1 class="my-3 text-center">
             home
-            <div class="float-right">
-                {% if user.is_authenticated %}
-                <h3>
-                    {{ user.get_username }}
-                    <button onclick="location.href='{% url 'show_cal' year month %}'" class="btn btn-info">カレンダーへ</button>
-                </h3>
-                {% else %}
-                <h3>
-                    Guest
-                    <button onclick="location.href='{% url 'login' %}'" class="btn btn-info">Login</button>
-                    <button onclick="location.href='{% url 'signup' %}'" class="btn btn-info">Sign Up</button>
-                </h3>
-                {% endif %}
-            </div>
         </h1>
+        <div class="float-right">
+            {% if user.is_authenticated %}
+            <h3>
+                {{ user.get_username }}
+                <button onclick="location.href='{% url 'show_cal' year month %}'" class="btn btn-info">カレンダーへ</button>
+            </h3>
+            {% else %}
+            <h3>
+                Guest
+                <button onclick="location.href='{% url 'login' %}'" class="btn btn-info">Login</button>
+                <button onclick="location.href='{% url 'signup' %}'" class="btn btn-info">Sign Up</button>
+            </h3>
+            {% endif %}
+        </div>
     </div>
-</body>
-</html>
+{% endblock %}

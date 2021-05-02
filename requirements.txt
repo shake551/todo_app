@@ -1,6 +1,4 @@
 django
-calender
-datetime
 dateutil
 pathlib
 pymysql

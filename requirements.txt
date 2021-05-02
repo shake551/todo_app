@@ -1,0 +1,9 @@
+django
+os
+sys
+calender
+datetime
+dateutil
+pathlib
+pymysql
+gunicorn

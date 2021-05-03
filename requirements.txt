@@ -1,4 +1,4 @@
 django
 pymysql
 gunicorn
-dateutil
+dateutil.relativedelta

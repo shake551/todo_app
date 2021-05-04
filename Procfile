@@ -1,1 +1,1 @@
-web: gunicorn shaketodo:app --log-file -
+web: gunicorn todo_app.wsgi:app --log-file -

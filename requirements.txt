@@ -2,3 +2,4 @@ django
 pymysql
 gunicorn
 python-dateutil
+mysqlclient

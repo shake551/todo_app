@@ -3,3 +3,4 @@ pymysql
 gunicorn
 python-dateutil
 mysqlclient
+whitenoise

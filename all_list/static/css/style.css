@@ -47,7 +47,6 @@ input[type="checkbox"]{
 }
 .day{
     width: 100%;
-    display: block;
     position: absolute;
     right: 0%;
     top: 0%;

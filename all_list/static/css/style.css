@@ -69,7 +69,7 @@ input[type="checkbox"]{
     position: relative;
 }
 .checkbox{
-    position: relative;
+    position: absolute;
     display: inline-block;
     left: 5%;
     content: '';

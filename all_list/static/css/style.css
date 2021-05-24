@@ -66,9 +66,6 @@ input[type="checkbox"]{
     text-align: center;
     overflow: scroll;
 }
-.task{
-    position: absolute;
-}
 .checkbox{
     position: absolute;
     display: inline-block;

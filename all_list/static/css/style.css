@@ -25,7 +25,7 @@ table{
     height: 100%;
     padding-top: 10%;
     table-layout: fixed;
-    position: relative;
+    position: absolute;
     text-align: center;
 }
 label{

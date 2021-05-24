@@ -25,7 +25,6 @@ table{
     height: 100%;
     padding-top: 10%;
     table-layout: fixed;
-    height: auto;
     position: relative;
     text-align: center;
 }
@@ -47,6 +46,7 @@ input[type="checkbox"]{
     height: 100%;
 }
 .day{
+    width: 100%;
     position: absolute;
     right: 5%;
     top: 0%;

@@ -62,7 +62,6 @@ input[type="checkbox"]{
 .todo{
     display: inline-block;
     width: 100%;
-    position: absolute;
     text-align: center;
     overflow: scroll;
 }

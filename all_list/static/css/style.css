@@ -73,8 +73,8 @@ input[type="checkbox"]{
     display: inline-block;
     left: 5%;
     content: '';
-    width: 3vw;
-    height: 3vw;
+    width: 2vw;
+    height: 2vw;
     border: 1px solid #9c9c9c;
     border-radius: 50%;
     box-sizing: border-box;

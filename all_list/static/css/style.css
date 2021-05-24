@@ -80,7 +80,6 @@ input[type="checkbox"]{
 }
 .check{
     content: '';
-    display: inline-block;
     position: absolute;
     left: 20%;
     top: 30%;

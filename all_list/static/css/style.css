@@ -48,8 +48,9 @@ input[type="checkbox"]{
 .day{
     width: 100%;
     position: absolute;
-    right: 5%;
+    right: 0%;
     top: 0%;
+    text-align: right;
 }
 .cal-task{
     width: 100%;

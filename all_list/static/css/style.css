@@ -19,8 +19,7 @@ table{
 }
 .calbox{
     width: 100%;
-    height: 130vw;
-    padding-top: 10%;
+    padding-top: 150%;
     table-layout: fixed;
     position: relative;
     text-align: center;

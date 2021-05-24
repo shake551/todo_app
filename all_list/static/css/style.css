@@ -67,6 +67,7 @@ input[type="checkbox"]{
 }
 .task-name{
     width: 100%;
+    display: inline-block;
 }
 .checkbox{
     position: absolute;

@@ -81,12 +81,14 @@
                                     {% for task in todo %}
                                     {% if task.0 != '' %}
                                     <span class="todo">
-                                        <span class="checkbox">
+                                        <div class="checkbox">
                                             {% if task.2 == True %}
                                             <span class="check"></span>
                                             {% endif %}
-                                        </span>
-                                    {{ task.0 }}
+                                        </div>
+                                        <div>
+                                            {{ task.0 }}
+                                        </div>
                                     </span>
                                     {% else %}
                                     <span class="todo"></span>

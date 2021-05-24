@@ -67,6 +67,7 @@
         </table>
         <table border="1" , width="100%">
             {% for data in monthly_calendar %}
+            <tr class="calrow">
                 {% for day, todo in data %}
                 <td class="calbox">
                     {% if day != '' %}
@@ -135,6 +136,7 @@
                     {% endif %}
                 </td>
                 {% endfor %}
+            </tr>
             {% endfor %}
         </table>
     </div>

@@ -66,11 +66,10 @@ input[type="checkbox"]{
 }
 .task-name{
     display: inline-block;
-    position: relative;
     overflow: scroll;
+    box-sizing: border-box;
 }
 .checkbox{
-    position: absolute;
     display: inline-block;
     left: 5%;
     content: '';
@@ -78,6 +77,7 @@ input[type="checkbox"]{
     height: 20px;
     border: 1px solid #9c9c9c;
     border-radius: 50%;
+    box-sizing: border-box;
 }
 .check{
     content: '';

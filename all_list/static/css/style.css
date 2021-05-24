@@ -4,7 +4,7 @@ h1{
 }
 table{
     width: 100%;
-    height: 150vw;
+    /* height: 150vw; */
     table-layout: fixed;
 }
 .fixbox{

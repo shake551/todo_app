@@ -87,7 +87,7 @@ input[type="checkbox"]{
     height: 5px;
     border-left: solid #25AF01;
     border-bottom: solid #25AF01;
-    transform: rotate(-45deg);
+    transform: rotate(45deg);
 }
 #popup{
     width: 100%;

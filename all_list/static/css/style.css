@@ -70,6 +70,7 @@ input[type="checkbox"]{
     box-sizing: border-box;
 }
 .checkbox{
+    position: absolute;
     display: inline-block;
     left: 5%;
     content: '';
@@ -83,8 +84,8 @@ input[type="checkbox"]{
     position: absolute;
     left: 20%;
     top: 30%;
-    width: 10px;
-    height: 5px;
+    width: 1vw;
+    height: 0.5vw;
     border-left: solid #25AF01;
     border-bottom: solid #25AF01;
     transform: rotate(-45deg);

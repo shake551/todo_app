@@ -79,7 +79,6 @@ input[type="checkbox"]{
     height: 2vw;
     border: 1px solid #9c9c9c;
     border-radius: 50%;
-    clear: both;
 }
 .check{
     content: '';

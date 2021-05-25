@@ -72,7 +72,7 @@ input[type="checkbox"]{
 .checkbox{
     position: absolute;
     display: inline-block;
-    top: 1%;
+    vertical-align: middle;
     left: 5%;
     content: '';
     width: 2vw;

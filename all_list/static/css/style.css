@@ -65,12 +65,13 @@ input[type="checkbox"]{
     overflow: scroll;
 }
 .task-name{
+    display: inline-block;
     overflow: scroll;
     box-sizing: border-box;
-    float: left;
 }
 .checkbox{
     position: absolute;
+    display: inline-block;
     top: 4%;
     left: 5%;
     content: '';
@@ -78,7 +79,6 @@ input[type="checkbox"]{
     height: 2vw;
     border: 1px solid #9c9c9c;
     border-radius: 50%;
-    float: left;
 }
 .check{
     content: '';

@@ -68,6 +68,7 @@ input[type="checkbox"]{
     display: inline-block;
     overflow: scroll;
     box-sizing: border-box;
+    left: 50%;
 }
 .checkbox{
     position: absolute;

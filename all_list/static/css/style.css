@@ -66,9 +66,9 @@ input[type="checkbox"]{
 }
 .task-name{
     display: inline-block;
-    overflow: scroll;
+    overflow-x: scroll;
     box-sizing: border-box;
-    left: 50%;
+    left: 90%;
 }
 .checkbox{
     position: absolute;

@@ -11,19 +11,19 @@
 
 <body>
     <div class="container">
-        <h1 class="my-3">
+        <div class="my-3">
             {{ year }} / {{ month }}
             <div class="float-right">
                 {% if user.is_authenticated %}
-                <h2>
+                <div>
                     {{ user.get_username }}
                     <button onclick="location.href='{% url 'logout' %}'" class="btn btn-info btn-lg">logout</button>
-                </h2>
+                </div>
                 {% else %}
                 Guest
                 {% endif %}
             </div>
-        </h1>
+        </div>
     </div>
     <div>
         <table class="fixbox", border="1">
@@ -80,7 +80,7 @@
                                 <div class="cal-task">
                                     {% for task in todo %}
                                     {% if task.0 != '' %}
-                                    <span class="todo">
+                                    <div class="todo">
                                         <div class="checkbox">
                                             {% if task.2 == True %}
                                             <span class="check"></span>
@@ -89,7 +89,7 @@
                                         <div class="task-name">
                                             {{ task.0 }}
                                         </div>
-                                    </span>
+                                    </div>
                                     {% else %}
                                     <span class="todo"></span>
                                     {% endif %}

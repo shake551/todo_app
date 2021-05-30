@@ -15,6 +15,7 @@ table{
     color: #fff;
     background: #333;
     z-index: 1;
+    font-size: 3.5vw;
 }
 .calbox{
     width: 100%;
@@ -45,6 +46,7 @@ input[type="checkbox"]{
     right: 0%;
     top: 0%;
     text-align: right;
+    font-size: 1vw;
 }
 .cal-task{
     width: 100%;
@@ -65,10 +67,12 @@ input[type="checkbox"]{
     overflow: scroll;
 }
 .task-name{
+    width: 90%;
     display: inline-block;
     overflow-y: scroll;
     box-sizing: border-box;
-    left: 90%;
+    white-space: nowrap;
+    font-size: 1.5vw;
 }
 .checkbox{
     position: absolute;

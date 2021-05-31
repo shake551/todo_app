@@ -1,6 +1,7 @@
-h1{
+.date{
     text-align: center;
     position: relative;
+    font-size: 5vw;
 }
 table{
     width: 100%;

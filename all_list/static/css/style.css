@@ -48,7 +48,7 @@ input[type="checkbox"]{
     right: 0%;
     top: 0%;
     text-align: right;
-    font-size: 1vw;
+    font-size: 2vw;
 }
 .cal-task{
     width: 100%;
@@ -75,7 +75,7 @@ input[type="checkbox"]{
     overflow-y: scroll;
     box-sizing: border-box;
     white-space: nowrap;
-    font-size: 1vw;
+    font-size: 2vw;
 }
 .task-td{
     display: table-cell;

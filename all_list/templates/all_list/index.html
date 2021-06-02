@@ -77,24 +77,26 @@
                                 <div class="day">
                                     {{ day }}
                                 </div>
-                                <div class="cal-task">
+                                <table class="cal-task">
                                     {% for task in todo %}
                                     {% if task.0 != '' %}
-                                    <div class="todo">
-                                        <div class="checkbox">
-                                            {% if task.2 == True %}
-                                            <span class="check"></span>
-                                            {% endif %}
-                                        </div>
-                                        <div class="task-name">
+                                    <tr class="todo">
+                                        <td class="task-td">
+                                            <span class="checkbox">
+                                                {% if task.2 == True %}
+                                                <div class="check"></div>
+                                                {% endif %}
+                                            </span>
+                                        </td>
+                                        <td class="task-name">
                                             {{ task.0 }}
-                                        </div>
-                                    </div>
+                                        </td>
+                                    </tr>
                                     {% else %}
-                                    <span class="todo"></span>
+                                    <tr class="todo"></tr>
                                     {% endif %}
                                     {% endfor %}
-                                </div>
+                                </table>
                             </p>
                         </span>
                         <input type="checkbox" name="checkbox">

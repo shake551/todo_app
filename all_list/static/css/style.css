@@ -1,7 +1,7 @@
 .date{
     text-align: center;
     position: relative;
-    font-size: 5vw;
+    font-size: 3vw;
 }
 table{
     width: 100%;
@@ -16,7 +16,7 @@ table{
     color: #fff;
     background: #333;
     z-index: 1;
-    font-size: 3.5vw;
+    font-size: 2vw;
 }
 .calbox{
     width: 100%;
@@ -32,6 +32,7 @@ label{
     top: 0%;
     left: 0%;
     background: #ecc09630;
+    overflow: scroll;
 }
 label span:hover{
     cursor: pointer;
@@ -51,15 +52,16 @@ input[type="checkbox"]{
 }
 .cal-task{
     width: 100%;
+    height: fit-content;
     position: relative;
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     -webkit-transform: translateY(-50%) translateX(-50%);
-    height: 75%;
     overflow: scroll;
     text-align: center;
     display: inline-block;
+    text-align: center;
 }
 .todo{
     display: inline-block;
@@ -68,22 +70,25 @@ input[type="checkbox"]{
     overflow: scroll;
 }
 .task-name{
-    width: 90%;
-    display: inline-block;
+    width: 90vw;
+    display: table-cell;
     overflow-y: scroll;
     box-sizing: border-box;
     white-space: nowrap;
-    font-size: 1.5vw;
+    font-size: 1vw;
+}
+.task-td{
+    display: table-cell;
+    width: 30vw;
 }
 .checkbox{
     position: absolute;
-    display: inline-block;
     top: 3%;
     left: 5%;
     content: '';
     width: 2vw;
     height: 2vw;
-    border: 1px solid #9c9c9c;
+    border: solid 1px #9c9c9c;
     border-radius: 50%;
 }
 .check{

@@ -79,12 +79,10 @@ input[type="checkbox"]{
 }
 .task-td{
     display: table-cell;
-    width: 30vw;
+    width: 5vw;
 }
 .checkbox{
-    position: absolute;
-    top: 3%;
-    left: 5%;
+    position: relative;
     content: '';
     width: 2vw;
     height: 2vw;

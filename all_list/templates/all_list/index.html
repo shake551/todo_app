@@ -109,18 +109,18 @@
                                     <div class="popup-todo">
                                         {% for task in todo %}
                                         {% if task.0 != '' %}
-                                        <h3>
-                                        <span class="todo">
-                                            <span class="checkbox">
+                                        <div class="todo">
+                                            <div class="checkbox">
                                                 {% if task.2 == True %}
-                                                <span class="check"></span>
+                                                <div class="check"></div>
                                                 {% endif %}
-                                            </span>
+                                            </div>
+                                            <div class="task_name">
                                                 {{ task.0 }}
+                                            </div>
                                             <button onclick="location.href='{% url 'edit' task.1 %}'" class="btn btn-outline-primary btn-sm float-right">edit</button>
                                             <button onclick="location.href='{% url 'delete' task.1 %}'" class="btn btn-outline-danger btn-sm float-right">delete</button>
-                                        </span>
-                                        </h3>
+                                        </div>
                                         {% else %}
                                         <span class="todo">
                                             <h3>

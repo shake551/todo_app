@@ -14,6 +14,7 @@ from dateutil.relativedelta import relativedelta
 from .models import ToDo
 from .forms import ToDoForm, SignUpForm
 
+
 def home(request):
     today = dt.datetime.today()
     year = dt.datetime.strftime(today, "%Y")
@@ -25,6 +26,7 @@ def home(request):
     }
 
     return render(request, 'all_list/home.html', params)
+
 
 @login_required(login_url='/all_list/login/')
 def show_cal(request, year=None, month=None):
@@ -46,10 +48,10 @@ def show_cal(request, year=None, month=None):
     before_year = dt.datetime.strftime(before_dt, "%Y")
     before_month = dt.datetime.strftime(before_dt, "%m")
 
-    #day_countにその月の日数を代入
+    # day_countにその月の日数を代入
     day_count = calendar.monthrange(year, month)[1]
 
-    #カレンダーの始まりを日曜日から
+    # カレンダーの始まりを日曜日から
     calendar.setfirstweekday(6)
 
     cal_data = calendar.monthcalendar(year, month)
@@ -59,36 +61,40 @@ def show_cal(request, year=None, month=None):
 
     monthly_calendar = []
     for i in range(len(cal_data)):
-        #曜日が入っていない要素は空白にする
-        temporary_cal_data = ['' if day == 0 else str(day) for day in cal_data[i]]
+        # 曜日が入っていない要素は空白にする
+        temporary_cal_data = ['' if day ==
+                              0 else str(day) for day in cal_data[i]]
         temporary_list = []
         print(temporary_cal_data)
         for j in range(len(temporary_cal_data)):
-            #日付が入っている場合
+            # 日付が入っている場合
             if temporary_cal_data[j] != '':
                 day += 1
-            #日付が入っていない場合
+            # 日付が入っていない場合
             else:
                 temporary_data = [temporary_cal_data[j], '']
                 temporary_list.append(temporary_data)
             try:
-                #日付の表示を整形
+                # 日付の表示を整形
                 temporary_date = dt.date(year, month, day)
                 date = '{0:%Y-%m-%d}'.format(temporary_date)
                 print(date)
-                #その日のtaskをtask_listに代入
+                # その日のtaskをtask_listに代入
                 task_list = show_task(request, date)
+                task_list = sorted(task_list, key=lambda x: x[2])
                 temporary_data = [temporary_cal_data[j], task_list]
                 temporary_list.append(temporary_data)
-            #曜日が範囲外になった時を除く
+                print('task')
+                print(task_list)
+            # 曜日が範囲外になった時を除く
             except ValueError:
                 print('x')
-            #リストの長さが7になったらmonthly_calenderに追加
+            # リストの長さが7になったらmonthly_calenderに追加
             if len(temporary_list) == 7:
                 monthly_calendar.append(temporary_list)
                 print('append')
                 print(temporary_list)
-            #日付がその月の日数と同じになったら
+            # 日付がその月の日数と同じになったら
             if day == day_count:
                 day += 1
             print('for')
@@ -109,18 +115,21 @@ def show_cal(request, year=None, month=None):
     }
     return render(request, 'all_list/index.html', params)
 
+
 @login_required(login_url='/all_list/login/')
 def show_task(request, date):
-    data = ToDo.objects.filter(author_name__exact = request.user)
+    data = ToDo.objects.filter(author_name__exact=request.user)
     task_data = []
     for get_data in data:
         temporary_data = get_data.multi_return()
         if str(temporary_data[1]) == str(date):
-            temporary_list = [temporary_data[0], get_data.id, temporary_data[2]]
+            temporary_list = [temporary_data[0],
+                              get_data.id, temporary_data[2]]
             task_data.append(temporary_list)
     if len(task_data) == 0:
         task_data.append(['', '', ''])
     return task_data
+
 
 @login_required(login_url='/all_list/login/')
 def create(request):
@@ -128,24 +137,24 @@ def create(request):
     year = dt.datetime.strftime(today, "%Y")
     month = dt.datetime.strftime(today, "%m")
 
-    #POST送信の処理
+    # POST送信の処理
     if (request.method == 'POST'):
         form = ToDoForm(request.POST)
         if form.is_valid():
-            #formのそれぞれの値を変数に代入
+            # formのそれぞれの値を変数に代入
             author_name = request.user
             end = request.POST.get('end')
             task = request.POST.get('task')
             limit = request.POST.get('limit')
             memo = request.POST.get('memo')
 
-            #checkboxの値をbool値に置き換え
+            # checkboxの値をbool値に置き換え
             if end == 'on':
                 end = True
             else:
                 end = False
 
-            #formの値をデータベースに登録
+            # formの値をデータベースに登録
             todo = ToDo()
             todo.author_name = author_name
             todo.end = end
@@ -155,16 +164,17 @@ def create(request):
             todo.save()
         return redirect('show_cal', year, month)
 
-    #GETアクセス時の処理
+    # GETアクセス時の処理
     else:
         form = ToDoForm()
 
-    #共通処理
+    # 共通処理
     params = {
         'form': form,
     }
 
     return render(request, 'all_list/create.html', params)
+
 
 @login_required(login_url='/all_list/login/')
 def edit(request, num):
@@ -172,37 +182,39 @@ def edit(request, num):
     year = int(dt.datetime.strftime(today, "%Y"))
     month = int(dt.datetime.strftime(today, "%m"))
 
-    #指定されたtaskを取得
+    # 指定されたtaskを取得
     todo = ToDo.objects.get(pk=num)
     if (request.method == 'POST'):
-        #編集する
+        # 編集する
         task = ToDoForm(request.POST, instance=todo)
         task.save()
         return redirect('show_cal', year, month)
-    
+
     params = {
         'form': ToDoForm(instance=todo),
         'id': num,
     }
     return render(request, 'all_list/edit.html', params)
 
+
 @login_required(login_url='/all_list/login/')
 def delete(request, num):
     today = dt.datetime.today()
     year = dt.datetime.strftime(today, "%Y")
     month = dt.datetime.strftime(today, "%m")
-    
-    #指定されたtaskを取得
+
+    # 指定されたtaskを取得
     todo = ToDo.objects.get(pk=num)
     if (request.method == 'POST'):
         todo.delete()
         return redirect('show_cal', year, month)
-    
+
     params = {
         'obj': todo,
         'id': num,
     }
     return render(request, 'all_list/delete.html', params)
+
 
 def signup(request):
     today = dt.datetime.today()
@@ -216,11 +228,13 @@ def signup(request):
     else:
         form = SignUpForm()
 
-    context = {'form':form}
+    context = {'form': form}
     return render(request, 'all_list/signup.html', context)
+
 
 class Login(LoginView):
     template_name = 'all_list/login.html'
+
 
 class Logout(LogoutView):
     template_name = 'all_list/logout.html'

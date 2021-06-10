@@ -4,3 +4,4 @@ gunicorn
 python-dateutil
 mysqlclient
 whitenoise
+python-dotenv

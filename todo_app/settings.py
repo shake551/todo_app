@@ -83,7 +83,7 @@ load_dotenv()
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('ENGIN'),
+        'ENGINE': os.environ.get('ENGINE'),
         'NAME': os.environ.get('NAME'),
         'USER': os.environ.get('USER'),
         'HOST': os.environ.get('HOST'),

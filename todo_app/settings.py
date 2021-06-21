@@ -79,17 +79,15 @@ WSGI_APPLICATION = 'todo_app.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-dotenv_path = join(dirname(__file__), '.env')
-load_dotenv(dotenv_path)
+load_dotenv()
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get('ENGIN'),
-        'NAME': os.environ.get('NAME'),
-        'USER': os.environ.get('USER'),
-        'HOST': os.environ.get('HOST'),
-        'PASSWORD': os.environ.get('PASSWORD'),
-        'PORT': os.environ.get('PORT'),
+        'ENGINE': os.environ.get('DB_ENGINE'),
+        'NAME': os.environ.get('DB_DATABASE'),
+        'USER': os.environ.get('DB_USERNAME'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
     }
 }
 
